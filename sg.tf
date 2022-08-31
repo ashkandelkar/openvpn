@@ -1,5 +1,4 @@
 module "sg" {
-    region = var.region
     source = "github.com/agnani/security_group"
     name = "openvpn-sg"
     description = "security group for vpn server"
