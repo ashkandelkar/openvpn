@@ -16,9 +16,6 @@ variable "key_name" {
 variable "tags" {
   type = any
 }
-variable "region" {
-  type =string
-}
 variable "vpc_id" {
   type = string
 }
