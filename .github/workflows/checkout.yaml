@@ -29,7 +29,7 @@ jobs:
         sed -i 's|776367005824.dkr.ecr.eu-west-1.amazonaws.com/model.*|nginx:latest|' ./repositories/manifests/model-object-detection/model-object-detection-deployment.yaml
 
     - name: Push helm changes
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         cwd: ./repositories
         message: 'updating image tag'
