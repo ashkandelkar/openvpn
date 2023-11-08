@@ -1,9 +1,7 @@
 name: asr model
 
 on: 
-  push:
-    branches: 
-      - origin
+  workflow_dispatch
 
 jobs:
   copy-file:
