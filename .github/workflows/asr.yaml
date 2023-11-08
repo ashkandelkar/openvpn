@@ -1,0 +1,36 @@
+name: asr model
+
+on: 
+  push:
+    branches: 
+      - origin
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Pushes test file
+      run: |
+        ls
+        pwd
+    
+    - name: Checkout helm chart
+      uses: actions/checkout@v2
+      with:
+        repository: ashkandelkar/check-please
+        token: ${{ secrets.API_TOKEN_GITHUB }}
+        path: ./repositories
+
+    - name: Update manifest-file
+      run: |
+        sed -i 's|776367005824.dkr.ecr.eu-west-1.amazonaws.com/model.*|nginx:latest|' ./repositories/manifests/model-object-detection/model-object-detection-deployment.yaml
+
+    - name: Push helm changes
+      uses: EndBug/add-and-commit@v9
+      with:
+        cwd: ./repositories
+        message: 'updating image tag'
+        branch: origin
